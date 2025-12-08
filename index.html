@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>jieun Lee</title>
 
   <link href="css/fonts.css" rel="stylesheet">
@@ -10,164 +10,104 @@
 
   <style>
     /* -----------------------
-        ABOUT 기본 스타일
-    ------------------------ */
-    .lang-ko { display: none; }
-    .section-content p {
-      font-size: 1.1em;
-      line-height: 1.6;
-      margin-left: 15px;
-      margin-right: 15px;
-      text-align: justify;
-    }
-    details summary { cursor: pointer; }
+       기본 스타일 / 세모(마커) 숨기기
+    ------------------------*/
+    body { font-family: Arial, sans-serif; max-width: 980px; margin: 36px auto; padding: 0 18px; line-height:1.6; }
+    header { margin-bottom: 18px; }
+    summary { cursor: pointer; font-weight: 600; }
+    /* hide default marker in WebKit and other modern browsers */
     details summary::-webkit-details-marker { display: none; }
+    details summary::marker { display: none; } /* modern browsers */
+    details summary { list-style: none; }
 
     /* -----------------------
-        RANDOM IMAGE
-    ------------------------ */
-    #random-images {
-      margin-top: 20px;
-      text-align: center;
-      position: fixed;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    #random-images img {
-      width: 500px; height: 500px;
-      object-fit: cover;
-      opacity: 0.4;
-      filter: blur(20px);
-      transition: all 0.3s;
-    }
-    #random-images img:hover {
-      opacity: 1;
-      filter: blur(0);
-      transform: scale(1.05);
-    }
+       About
+    ------------------------*/
+    .section-content p { font-size: 1.05em; margin: 0 0 1em 0; text-align: justify; }
+    .lang-ko { display: none; }
 
     /* -----------------------
-        PROJECTS
-    ------------------------ */
-    #project-list {
-      display: none;
-      margin-top: 10px;
-    }
-    .project-content {
-      display: none;
-      margin: 16px 0 32px 10px;
-    }
-    .project-image {
-      width: 100%;
-      max-width: 600px;
-      margin-bottom: 10px;
-      display: block;
-    }
+       Random image area
+    ------------------------*/
+    #random-images { position: fixed; top:50%; left:50%; transform: translate(-50%,-50%); text-align:center; z-index: 50; }
+    #random-images img { width: 460px; height:460px; object-fit: cover; border-radius: 0; box-shadow: 0 6px 24px rgba(0,0,0,0.2); opacity:0.45; filter: blur(18px); transition: all .28s ease; }
+    #random-images img:hover { opacity:1; filter: blur(0); transform: scale(1.02); }
+
+    /* -----------------------
+       Projects
+    ------------------------*/
+    #project-list { display: none; margin-top: 10px; }
+    .project-item { margin: 8px 0; }
+    .project-content { display: none; margin: 12px 0 28px 8px; }
+    .project-image { width: 100%; max-width: 680px; display:block; margin-bottom:10px; cursor: pointer; }
     .lang-en { display: block; }
     .lang-ko { display: none; }
 
-    /* 이미지 hover 시 영어 → 한국어 전환 */
-    .project-image:hover ~ .lang-en { display: none; }
-    .project-image:hover ~ .lang-ko { display: block; }
+    /* fallback CSS (doesn't rely on JS) — keeps layout stable */
+    .project-content p { margin: 6px 0; }
+    a { color: #1a73e8; text-decoration: none; }
+    a:hover { text-decoration: underline; }
   </style>
 </head>
-
 <body>
-
 <header>
   <h1 id="title">jieun Lee</h1>
 </header>
 
 <div class="content">
-
-  <!-- ----------------------- ABOUT ----------------------- -->
+  <!-- ABOUT -->
   <details id="about">
     <summary>About</summary>
     <div class="section-content">
-      <p class="lang-en">
-        I am deeply interested in the videos that are most commonly encountered by this generation, not just contemporary art. Among them, I focus on the way stories are told through video and the moments in between reality, paying attention to the fleeting moments. Through this observation, I research how these images are being consumed by us, and continue my work by directly engaging with them. At first glance, 
-        these may seem like ordinary stories, but I focus on a perspective that cannot be merely the same, emphasizing a more complex and multifaceted view.
+      <p class="lang-en" id="about-en">
+        I am deeply interested in the videos that are most commonly encountered by this generation, not just contemporary art. Among them, I focus on the way stories are told through video and the moments in between reality, paying attention to the fleeting moments. Through this observation, I research how these images are being consumed by us, and continue my work by directly engaging with them. At first glance, these may seem like ordinary stories, but I focus on a perspective that cannot be merely the same, emphasizing a more complex and multifaceted view.
       </p>
-      <p class="lang-ko">
-        동시대 예술만이 아닌 지금 세대에서 가장 흔하게 접하고 있는 영상에 관심이 깊다. 그중 영상이 이야기되는 방식과 현실 사이, 찰나에 주목한다.
-        이러한 관찰과 나아가 그것들이 우리에게 소비되고 있는 이미지를 연구하고, 직접 마주하며 작업을 이어 나가고 있다. 언뜻 보면 흔한 이야기들 같지만, 같을 수 없는 입체적인 시야를 중점으로 삼고 있다.
+      <p class="lang-ko" id="about-ko">
+        동시대 예술만이 아닌 지금 세대에서 가장 흔하게 접하고 있는 영상에 관심이 깊다. 그중 영상이 이야기되는 방식과 현실 사이, 찰나에 주목한다. 이러한 관찰과 나아가 그것들이 우리에게 소비되고 있는 이미지를 연구하고, 직접 마주하며 작업을 이어 나가고 있다. 언뜻 보면 흔한 이야기들 같지만, 같을 수 없는 입체적인 시야를 중점으로 삼고 있다.
       </p>
-      <a href="mailto:jaminyi0129@naver.com">Email jieun Lee</a><br>
-      <a href="https://youtu.be/uABw6ujS0Yo?si=ybnWp-CVC3VEbV0V" target="_blank">Interview video</a>
+
+      <p style="margin-top:6px;">
+        <a href="mailto:jaminyi0129@naver.com">Email jieun Lee</a><br>
+        <a href="https://youtu.be/uABw6ujS0Yo?si=ybnWp-CVC3VEbV0V" target="_blank">Interview video</a>
+      </p>
     </div>
   </details>
 
-
-  <!-- ----------------------- PROJECTS ----------------------- -->
+  <!-- PROJECTS -->
   <details id="projects">
     <summary>Projects</summary>
 
     <div id="project-list">
 
-      <!-- wander -->
-      <details class="project-item">
+      <!-- Project 1 -->
+      <details class="project-item" data-proj="wander">
         <summary>wander, 2024.</summary>
         <div class="project-content">
-
           <figure>
-            <img src="이지은 3.jpg" class="project-image">
+            <img src="이지은 3.jpg" alt="wander, 2024." class="project-image">
           </figure>
 
-          <p class="lang-en">
-             The increase in international migration is one of the key functions of nations in
-          the 21st century. Through movement and intercultural exchanges, heterogeneous
-          cultures meet, giving rise to cultural hybridity. The artist speaks about the
-          border-like existence they experienced through their Vietnamese mother. This
-          presence visualizes the gaps where these border-crossing beings reside, while also
-          clashing their perspectives. The work involves breaking down boundaries and
-          rethinking them through the stories that begin with immigrants' narratives of their
-          hometowns, as shared in interviews.
-          </p>
-          <p class="lang-ko">
-            국제 이주의 증가는 21세기 국가의 중요한 기능 중 하나이다. 이동과 인종 간의 교류로
-          이질적 문화들이 만나 문화 혼종성이 발생하는데, 작가는 베트남인 어머니를 두면서
-          경험한 경계적 존재들에 대해서 이야기한다. 그 모습은 경계적 존재들이 머물러 있는
-          틈을 가시화하면서 그들의 입장을 충돌시킨다. 인터뷰한 이주민에게 고향으로 시작된
-          이야기들을 통해 경계를 허물고 그것들을 재사유하는 작업이다.
-          </p>
+          <p class="lang-en">The increase in international migration is one of the key functions of nations in the 21st century. Through movement and intercultural exchanges, heterogeneous cultures meet, giving rise to cultural hybridity. The artist speaks about the border-like existence they experienced through their Vietnamese mother. This presence visualizes the gaps where these border-crossing beings reside, while also clashing their perspectives. The work involves breaking down boundaries and rethinking them through the stories that begin with immigrants' narratives of their hometowns, as shared in interviews.</p>
 
-          <a href="https://youtu.be/6a0TOq55H9g?si=kWl7AiMY0_HlKF_u" target="_blank">
-            Video link
-          </a>
+          <p class="lang-ko">국제 이주의 증가는 21세기 국가의 중요한 기능 중 하나이다. 이동과 인종 간의 교류로 이질적 문화들이 만나 문화 혼종성이 발생하는데, 작가는 베트남인 어머니를 두면서 경험한 경계적 존재들에 대해서 이야기한다. 그 모습은 경계적 존재들이 머물러 있는 틈을 가시화하면서 그들의 입장을 충돌시킨다. 인터뷰한 이주민에게 고향으로 시작된 이야기들을 통해 경계를 허물고 그것들을 재사유하는 작업이다.</p>
 
+          <p><a href="https://youtu.be/6a0TOq55H9g?si=kWl7AiMY0_HlKF_u" target="_blank">wander, 2024. (Video)</a></p>
         </div>
       </details>
 
-      <!-- 0349 -->
-      <details class="project-item">
+      <!-- Project 2 -->
+      <details class="project-item" data-proj="0349">
         <summary>0349-, 2023.</summary>
         <div class="project-content">
-
           <figure>
-            <img src="0349-.jpg" class="project-image">
+            <img src="0349-.jpg" alt="0349-, 2023." class="project-image">
           </figure>
 
-          <p class="lang-en">
-            Oral traditions, once transmitted without formal mediation, are now being documented
-          in the name of preserving and inheriting tradition, even though their immaterial and
-          ephemeral nature contradicts the very idea of fixed records. Among folk songs whose
-          regional identity once stood out—yet whose origins often remain unclear—“sangyeo sori”
-          has gradually lost its original function and is now reproduced primarily for the sake
-          of documentation. This work attempts an alternative form of archival practice by
-          engaging with “sangyeo sori,” exploring how an orally transmitted culture can be
-          recorded beyond conventional methods.
-          </p>
-          <p class="lang-ko">
-            매개 없이 전승되던 구비 문화는 비물질적 흔적이라는 구전의 성질과 대척점을 가짐에도
-          전통성의 보존과 계승이라는 명목하에 기록되고 있다. 불분명한 출처에 의해 지역성이
-          돋보이던 민요 중 본질적 기능이 희미해지고 기록을 위해서만 재현되고 있는 ‘상여소리’를
-          통해 구비 문화적 기록을 시도함으로써 대안적 기록의 방식을 보여주고자 한다.
-          </p>
+          <p class="lang-en">Oral traditions, once transmitted without formal mediation, are now being documented in the name of preserving and inheriting tradition, even though their immaterial and ephemeral nature contradicts the very idea of fixed records. Among folk songs whose regional identity once stood out—yet whose origins often remain unclear—“sangyeo sori” has gradually lost its original function and is now reproduced primarily for the sake of documentation. This work attempts an alternative form of archival practice by engaging with “sangyeo sori,” exploring how an orally transmitted culture can be recorded beyond conventional methods.</p>
 
-          <a href="https://youtu.be/WdnAAleREPo" target="_blank">
-            Video link
-          </a>
+          <p class="lang-ko">매개 없이 전승되던 구비 문화는 비물질적 흔적이라는 구전의 성질과 대척점을 가짐에도 전통성의 보존과 계승이라는 명목하에 기록되고 있다. 불분명한 출처에 의해 지역성이 돋보이던 민요 중 본질적 기능이 희미해지고 기록을 위해서만 재현되고 있는 ‘상여소리’를 통해 구비 문화적 기록을 시도함으로써 대안적 기록의 방식을 보여주고자 한다.</p>
 
+          <p><a href="https://youtu.be/WdnAAleREPo" target="_blank">0349-, 2023. (Video)</a></p>
         </div>
       </details>
 
@@ -176,86 +116,136 @@
 
 </div>
 
-
-<!-- ----------------------- RANDOM IMAGE AREA ----------------------- -->
-<div id="random-images">
+<!-- RANDOM IMAGE -->
+<div id="random-images" style="display:none;">
   <div id="image-container"></div>
 </div>
 
-
-<!-- ----------------------- SCRIPT ----------------------- -->
 <script>
-  /* 랜덤 이미지 */
-  const randomImages = [
-    '1.JPG','2.jpeg','6.jpeg','이지은 4.jpg','5.jpeg','4.jpeg'
-  ];
+  (function () {
+    // ---------- helpers ----------
+    const $ = sel => document.querySelector(sel);
+    const $$ = sel => Array.from(document.querySelectorAll(sel));
 
-  function displayRandomImage() {
-    const container = document.getElementById('image-container');
-    const src = randomImages[Math.floor(Math.random() * randomImages.length)];
-    container.innerHTML = `<img src="${src}" alt="Random">`;
-  }
+    // ---------- random images ----------
+    const randomImages = ['1.JPG','2.jpeg','6.jpeg','이지은 4.jpg','5.jpeg','4.jpeg'];
+    function displayRandomImage() {
+      const c = document.getElementById('image-container');
+      const src = randomImages[Math.floor(Math.random()*randomImages.length)];
+      c.innerHTML = `<img src="${src}" alt="Random image">`;
+    }
 
-  window.addEventListener("DOMContentLoaded", displayRandomImage);
-
-
-  /* title 클릭 시 — 랜덤 이미지 표시 */
-  document.getElementById("title").addEventListener("click", function () {
-    document.getElementById("random-images").style.display = "block";
-    displayRandomImage();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    about.removeAttribute("open");
-    projects.removeAttribute("open");
-  });
-
-
-  /* ABOUT / PROJECTS 열리면 랜덤 이미지 숨기기 */
-  const about = document.getElementById("about");
-  const projects = document.getElementById("projects");
-
-  about.addEventListener("toggle", () => {
-    document.getElementById("random-images").style.display = "none";
-    if (about.open) projects.removeAttribute("open");
-  });
-
-  projects.addEventListener("toggle", () => {
-    document.getElementById("random-images").style.display = "none";
-    if (projects.open) about.removeAttribute("open");
-  });
-
-
-  /* Projects 펼칠 때 내부 리스트 표시 */
-  projects.addEventListener("toggle", function () {
-    document.getElementById("project-list").style.display =
-      this.open ? "block" : "none";
-  });
-
-
-  /* 하나의 프로젝트만 열리도록 설정 */
-  document.querySelectorAll(".project-item summary").forEach(summary => {
-    summary.addEventListener("click", function () {
-      const current = this.parentElement;
-
-      // 다른 프로젝트 닫기
-      document.querySelectorAll(".project-item").forEach(item => {
-        if (item !== current) {
-          item.open = false;
-          item.querySelector(".project-content").style.display = "none";
-        }
-      });
-
-      const content = current.querySelector(".project-content");
-
-      // 이미 열려 있으면 닫기
-      if (current.open) {
-        content.style.display = "none";
-      } else {
-        content.style.display = "block";
-      }
+    // show random images when title clicked
+    $('#title').addEventListener('click', function () {
+      const ri = document.getElementById('random-images');
+      ri.style.display = 'block';
+      displayRandomImage();
+      // close details
+      $('#about').removeAttribute('open');
+      $('#projects').removeAttribute('open');
+      window.scrollTo({top:0, behavior:'smooth'});
     });
-  });
 
+    // ---------- About / Projects toggle behavior ----------
+    const about = $('#about');
+    const projects = $('#projects');
+    const projectList = $('#project-list');
+
+    // when about / projects open, hide random image and ensure the other closes
+    about.addEventListener('toggle', () => {
+      document.getElementById('random-images').style.display = 'none';
+      if (about.open) projects.removeAttribute('open');
+    });
+
+    projects.addEventListener('toggle', () => {
+      document.getElementById('random-images').style.display = 'none';
+      // show/hide the internal list
+      projectList.style.display = projects.open ? 'block' : 'none';
+      if (projects.open) about.removeAttribute('open');
+    });
+
+    // ---------- accordion: only one project open ----------
+    function initAccordion() {
+      const items = $$('.project-item');
+      items.forEach(item => {
+        const summary = item.querySelector('summary');
+        const content = item.querySelector('.project-content');
+
+        // ensure initial state
+        content.style.display = item.open ? 'block' : 'none';
+
+        summary.addEventListener('click', (e) => {
+          // Chrome sometimes toggles open attribute after click event; use setTimeout 0 to let native toggle happen
+          setTimeout(() => {
+            const isOpen = item.open;
+            // close others
+            items.forEach(other => {
+              if (other !== item) {
+                other.open = false;
+                const oc = other.querySelector('.project-content');
+                if (oc) oc.style.display = 'none';
+              }
+            });
+            // set this content visibility
+            content.style.display = isOpen ? 'block' : 'none';
+          }, 0);
+        });
+      });
+    }
+
+    // ---------- hover language swap for About ----------
+    function initAboutHover() {
+      const aboutEn = $('#about .lang-en');
+      const aboutKo = $('#about .lang-ko');
+      if (!aboutEn || !aboutKo) return;
+      // on mouseenter on the english paragraph show korean
+      aboutEn.addEventListener('mouseenter', () => {
+        aboutEn.style.display = 'none';
+        aboutKo.style.display = 'block';
+      });
+      aboutEn.addEventListener('mouseleave', () => {
+        aboutEn.style.display = 'block';
+        aboutKo.style.display = 'none';
+      });
+    }
+
+    // ---------- hover language swap for each project image ----------
+    function initProjectImageHover() {
+      const projectItems = $$('.project-item');
+      projectItems.forEach(item => {
+        const img = item.querySelector('.project-image');
+        const en = item.querySelector('.lang-en');
+        const ko = item.querySelector('.lang-ko');
+        if (!img || !en || !ko) return;
+
+        // ensure initial state
+        en.style.display = 'block';
+        ko.style.display = 'none';
+
+        img.addEventListener('mouseenter', () => {
+          en.style.display = 'none';
+          ko.style.display = 'block';
+        });
+        img.addEventListener('mouseleave', () => {
+          en.style.display = 'block';
+          ko.style.display = 'none';
+        });
+
+        // also when the project is toggled closed/opened we keep lang consistent
+        item.addEventListener('toggle', () => {
+          if (!item.open) { en.style.display = 'block'; ko.style.display = 'none'; }
+        });
+      });
+    }
+
+    // ---------- init on DOM loaded ----------
+    document.addEventListener('DOMContentLoaded', () => {
+      initAccordion();
+      initAboutHover();
+      initProjectImageHover();
+    });
+
+  })();
 </script>
-
 </body>
 </html>
