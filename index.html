@@ -166,7 +166,20 @@
       </div>
     </details>
 
- <!-- Projects 전체 -->
+ <style>
+  /* Projects 내부의 실제 프로젝트 목록은 처음에 숨기기 */
+  #project-list {
+    display: none;
+  }
+
+  /* 이미지 hover 시 약간 투명 효과 */
+  .project-image:hover {
+    opacity: 0.85;
+    transition: 0.2s;
+  }
+</style>
+
+<!-- 전체 Projects -->
 <details id="projects">
   <summary>Projects</summary>
 
@@ -180,7 +193,7 @@
 
         <figure>
           <a href="https://youtu.be/6a0TOq55H9g?si=kWl7AiMY0_HlKF_u" target="_blank">
-            <img src="이지은 3.jpg" alt="wander, 2024." class="project-image">
+            <img src="이지은 3.jpg" alt="wander, 2024." class="project-image" data-project="wander">
           </a>
         </figure>
 
@@ -203,8 +216,6 @@
           이야기들을 통해 경계를 허물고 그것들을 재사유하는 작업이다.
         </p>
 
-        <p><a href="https://youtu.be/6a0TOq55H9g?si=kWl7AiMY0_HlKF_u" target="_blank">wander, 2024. (Video)</a></p>
-
       </div>
     </details>
 
@@ -216,7 +227,7 @@
 
         <figure>
           <a href="https://youtu.be/WdnAAleREPo" target="_blank">
-            <img src="0349-.jpg" alt="0349-, 2023." class="project-image">
+            <img src="0349-.jpg" alt="0349-, 2023." class="project-image" data-project="0349">
           </a>
         </figure>
 
@@ -238,13 +249,50 @@
           통해 구비 문화적 기록을 시도함으로써 대안적 기록의 방식을 보여주고자 한다.
         </p>
 
-        <p><a href="https://youtu.be/WdnAAleREPo" target="_blank">0349-, 2023. (Video)</a></p>
-
       </div>
     </details>
 
   </div>
 </details>
+
+<script>
+  /* 1) Projects 클릭 시에만 내부 리스트가 보이도록 */
+  document.getElementById("projects").addEventListener("toggle", function () {
+    const list = document.getElementById("project-list");
+    list.style.display = this.open ? "block" : "none";
+  });
+
+  /* 2) 하나의 프로젝트만 펼쳐지는 아코디언 기능 */
+  const projectItems = document.querySelectorAll(".project-item");
+
+  projectItems.forEach((item) => {
+    item.addEventListener("toggle", () => {
+      if (item.open) {
+        projectItems.forEach((other) => {
+          if (other !== item) other.open = false;
+        });
+      }
+    });
+  });
+
+  /* 3) 이미지 hover 시 영어 설명 → 한국어 설명으로 자동 전환 */
+  const images = document.querySelectorAll(".project-image");
+
+  images.forEach((img) => {
+    img.addEventListener("mouseenter", () => {
+      const container = img.closest(".project-content");
+      container.querySelector(".lang-en").style.display = "none";
+      container.querySelector(".lang-ko").style.display = "block";
+    });
+
+    img.addEventListener("mouseleave", () => {
+      const container = img.closest(".project-content");
+      container.querySelector(".lang-en").style.display = "block";
+      container.querySelector(".lang-ko").style.display = "none";
+    });
+  });
+</script>
+
 
 
 <!-- ▼▼▼ 실행 스크립트 (일반 아코디언 + 이미지 hover 언어 변환) ▼▼▼ -->
