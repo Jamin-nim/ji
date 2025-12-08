@@ -166,14 +166,16 @@
       </div>
     </details>
 
- <!-- 전체 프로젝트 리스트를 감싸는 Details -->
+ <!-- Projects 전체 -->
 <details id="projects">
   <summary>Projects</summary>
 
-  <!-- 프로젝트 1 : wander -->
-  <div class="project">
-    <details>
+  <div id="project-list">
+
+    <!-- 프로젝트 1 : wander -->
+    <details class="project-item">
       <summary>wander, 2024.</summary>
+
       <div class="project-content">
 
         <figure>
@@ -201,21 +203,15 @@
           이야기들을 통해 경계를 허물고 그것들을 재사유하는 작업이다.
         </p>
 
-        <p>
-          <a href="https://youtu.be/6a0TOq55H9g?si=kWl7AiMY0_HlKF_u" target="_blank">
-            wander, 2024. (Video)
-          </a>
-        </p>
+        <p><a href="https://youtu.be/6a0TOq55H9g?si=kWl7AiMY0_HlKF_u" target="_blank">wander, 2024. (Video)</a></p>
 
       </div>
     </details>
-  </div>
 
-
-  <!-- 프로젝트 2 : 0349- -->
-  <div class="project">
-    <details>
+    <!-- 프로젝트 2 : 0349- -->
+    <details class="project-item">
       <summary>0349-, 2023.</summary>
+
       <div class="project-content">
 
         <figure>
@@ -242,17 +238,51 @@
           통해 구비 문화적 기록을 시도함으로써 대안적 기록의 방식을 보여주고자 한다.
         </p>
 
-        <p>
-          <a href="https://youtu.be/WdnAAleREPo" target="_blank">
-            0349-, 2023. (Video)
-          </a>
-        </p>
+        <p><a href="https://youtu.be/WdnAAleREPo" target="_blank">0349-, 2023. (Video)</a></p>
 
       </div>
     </details>
-  </div>
 
+  </div>
 </details>
+
+
+<!-- ▼▼▼ 실행 스크립트 (일반 아코디언 + 이미지 hover 언어 변환) ▼▼▼ -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  /* 1) 한 번에 하나만 열리는 아코디언 */
+  const projectItems = document.querySelectorAll(".project-item");
+
+  projectItems.forEach((item) => {
+    item.addEventListener("toggle", () => {
+      if (item.open) {
+        projectItems.forEach((other) => {
+          if (other !== item) other.open = false;
+        });
+      }
+    });
+  });
+
+  /* 2) 이미지 hover 시 영어 숨기고 한국어 표시 */
+  const images = document.querySelectorAll(".project-image");
+
+  images.forEach((img) => {
+    img.addEventListener("mouseenter", () => {
+      const container = img.closest(".project-content");
+      container.querySelector(".lang-en").style.display = "none";
+      container.querySelector(".lang-ko").style.display = "block";
+    });
+
+    img.addEventListener("mouseleave", () => {
+      const container = img.closest(".project-content");
+      container.querySelector(".lang-en").style.display = "block";
+      container.querySelector(".lang-ko").style.display = "none";
+    });
+  });
+
+});
+</script>
 
 
 
